@@ -12,11 +12,14 @@ namespace T_rexTest
     internal class gravity
 
     {//dyno
+        
         Vector2 size = new Vector2(30);
         Vector2 position;
         Vector2 velocity;
         Vector2 jumps;
         bool hasTouchedGround = true;
+        //This is the name of the sound effect and where to find it (I dont trust where it will find the code that will prob cause an error)
+        Sound Jump = LoadSound("GitHub\TrexRun\T-rexTest\JumpSFX.mp3");
         public gravity(float x, float y, float forceofgravity)
         {
             position = new Vector2(20, 500);
@@ -52,6 +55,8 @@ namespace T_rexTest
         }
         public void DoJump()
         {
+            //should play the sound every time we jump
+            PlaySound(Jump);
             Vector2 Jumpforce = new Vector2(0, -5);
             velocity = Jumpforce;
         }
