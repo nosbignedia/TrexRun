@@ -16,6 +16,7 @@ namespace T_rexTest
         Vector2 position;
         Vector2 velocity;
         Vector2 jumps;
+        bool hasTouchedGround = true;
         public gravity(float x, float y, float forceofgravity)
         {
             position = new Vector2(20, 500);
@@ -24,19 +25,26 @@ namespace T_rexTest
         public void update()
         {
             Applygravity();
-            if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
+
+            //Seems this can't be inside a while loop or the program will start and never load. How odd. - Neil
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE) && hasTouchedGround == true)
             {
                 DoJump();
+                hasTouchedGround = false;
             }
             position += velocity;
 
+            // The "hasTouchedGround" Allows it to jump again on impact with the ground. - Neil
             // constrain  each frame
             float dynoY = position.Y;
             if (dynoY > 520)
             {
                 position.Y = 520;
                 velocity.Y = 0;
+                hasTouchedGround = true;
             }
+
+
         }
         public void DrawDyno()
         {
