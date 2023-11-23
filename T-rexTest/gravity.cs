@@ -22,7 +22,10 @@ namespace T_rexTest
         bool hasTouchedGround = true;
         //This is the name of the sound effect and where to find it (I dont trust where it will find the code that will prob cause an error)
         Sound Jump = Raylib.LoadSound("../../../JumpSFX.mp3");
-
+        //This should play after hitting 100 on the timer
+        //Sound Ping = Raylib.LoadSound("../../../Ping.mp3");
+        //Put this in code where the timer/score hits 100
+        // Raylib.PlaySound(Ping);
         public gravity(float x, float y, float forceofgravity)
         {
             position = new Vector2(20, 500);
