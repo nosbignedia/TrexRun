@@ -17,6 +17,7 @@ namespace T_rexTest
         Vector2 position;
         Vector2 velocity;
         Vector2 jumps;
+        int jumpLimit = 1;
         bool hasTouchedGround = true;
         //This is the name of the sound effect and where to find it (I dont trust where it will find the code that will prob cause an error)
        // Sound Jump = LoadSound("GitHub\TrexRun\T-rexTest\JumpSFX.mp3");
@@ -38,7 +39,7 @@ namespace T_rexTest
             position += velocity;
 
             // The "hasTouchedGround" Allows it to jump again on impact with the ground. - Neil
-            // constrain  each frame
+            // constrain each frame
             float dynoY = position.Y;
             if (dynoY > 520)
             {
