@@ -35,7 +35,7 @@ namespace T_rexTest
             position += velocity;
 
             // The "hasTouchedGround" Allows it to jump again on impact with the ground. - Neil
-            // constrain  each frame
+            // constrain each frame
             float dynoY = position.Y;
             if (dynoY > 520)
             {
