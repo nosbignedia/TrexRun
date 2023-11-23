@@ -28,6 +28,10 @@ namespace T_rexTest
         //death noise below
         //static Sound Death = Raylib.LoadSound("../../../DeathNoise.mp3");
         // add this to where the death code is ---> Raylib.PlaySound(Death);
+
+        //game over mucis below
+        //static Music GameOver = Raylib.LoadMusicStream("../../GameOver.mp3");
+        // add this to where the game over screen is ---> Raylib.PlayMusicStream(GameOver);
         static void Main(string[] args)
         { 
             Setup();
@@ -49,6 +53,7 @@ namespace T_rexTest
             jumps = new gravity(x,y , gravity);
             FontDyno = Raylib.LoadFont("../../../DynoFont.ttf");
             Backsong.Looping = true;
+            //<-- remove after game over code is added GameOver.Looping = true;
             Raylib.PlayMusicStream(Backsong);
 
         }
@@ -68,6 +73,7 @@ namespace T_rexTest
             Raylib.EndDrawing();
 
             Raylib.UpdateMusicStream(Backsong);
+            // <-- remove after game over code is added Raylib.UpdateMusicStream(GameOver);
 
         }
 
