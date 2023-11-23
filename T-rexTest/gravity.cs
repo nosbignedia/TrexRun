@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Transactions;
 namespace T_rexTest
 {
     internal class gravity
@@ -17,9 +18,11 @@ namespace T_rexTest
         Vector2 position;
         Vector2 velocity;
         Vector2 jumps;
+        //120 is timer change later
         bool hasTouchedGround = true;
         //This is the name of the sound effect and where to find it (I dont trust where it will find the code that will prob cause an error)
         Sound Jump = Raylib.LoadSound("../../../JumpSFX.mp3");
+
         public gravity(float x, float y, float forceofgravity)
         {
             position = new Vector2(20, 500);
@@ -46,6 +49,8 @@ namespace T_rexTest
                 velocity.Y = 0;
                 hasTouchedGround = true;
             }
+
+
 
 
         }
