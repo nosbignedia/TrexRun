@@ -24,13 +24,14 @@ namespace T_rexTest
         //Public Void Gravity
         static gravity jumps;
         static Font FontDyno;
-
+        static Music Backsong = Raylib.LoadMusicStream("../../../BackNoise.mp3");
         static void Main(string[] args)
         { 
             Setup();
             while (!Raylib.WindowShouldClose())
             {
                 Update();
+
             }
             Raylib.CloseWindow();
         }
@@ -44,6 +45,8 @@ namespace T_rexTest
             float gravity = 6;
             jumps = new gravity(x,y , gravity);
             FontDyno = Raylib.LoadFont("../../../DynoFont.ttf");
+            Backsong.Looping = true;
+            Raylib.PlayMusicStream(Backsong);
 
         }
         static void Update()
@@ -60,6 +63,9 @@ namespace T_rexTest
            
             Raylib.DrawFPS(700, 0);//POSITION DRAW FPS
             Raylib.EndDrawing();
+
+            Raylib.UpdateMusicStream(Backsong);
+
         }
 
         static void Font()
