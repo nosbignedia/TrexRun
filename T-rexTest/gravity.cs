@@ -11,7 +11,8 @@ namespace T_rexTest
 {
     internal class gravity
 
-    {//dyno
+    {
+        //dyno
         Vector2 size = new Vector2(30);
         Vector2 position;
         Vector2 velocity;
