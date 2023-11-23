@@ -25,6 +25,9 @@ namespace T_rexTest
         static gravity jumps;
         static Font FontDyno;
         static Music Backsong = Raylib.LoadMusicStream("../../../BackNoise.mp3");
+        //death noise below
+        //static Sound Death = Raylib.LoadSound("../../../DeathNoise.mp3");
+        // add this to where the death code is ---> Raylib.PlaySound(Death);
         static void Main(string[] args)
         { 
             Setup();
