@@ -16,6 +16,7 @@ namespace T_rexTest
         Vector2 position;
         Vector2 velocity;
         Vector2 jumps;
+        int jumpLimit = 1;
         bool hasTouchedGround = true;
         public gravity(float x, float y, float forceofgravity)
         {
