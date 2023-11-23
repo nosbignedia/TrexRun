@@ -36,12 +36,13 @@ namespace T_rexTest
         }
         static void Setup()
         {
-            float x = Raylib.GetScreenWidth();
+            Raylib.InitWindow(800, 600, "T-rex");
+            Raylib.SetTargetFPS(60);
+            Raylib.InitAudioDevice(); float x = Raylib.GetScreenWidth();
+
             float y = Raylib.GetScreenHeight();
             float gravity = 6;
             jumps = new gravity(x,y , gravity);
-            Raylib.InitWindow(800, 600, "T-rex");
-            Raylib.SetTargetFPS(60);
             FontDyno = Raylib.LoadFont("../../../DynoFont.ttf");
 
         }
