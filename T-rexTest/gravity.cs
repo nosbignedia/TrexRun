@@ -18,7 +18,6 @@ namespace T_rexTest
         Vector2 velocity;
         Vector2 jumps;
         int jumpLimit = 1;
-        bool hasTouchedGround = true;
         public gravity(float x, float y, float forceofgravity)
         {
             position = new Vector2(20, 500);
@@ -29,10 +28,10 @@ namespace T_rexTest
             Applygravity();
 
             //Seems this can't be inside a while loop or the program will start and never load. How odd. - Neil
-            if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE) && hasTouchedGround == true)
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE) && jumpLimit == 0)
             {
                 DoJump();
-                hasTouchedGround = false;
+                jumpLimit++;
             }
             position += velocity;
 
@@ -43,7 +42,7 @@ namespace T_rexTest
             {
                 position.Y = 520;
                 velocity.Y = 0;
-                hasTouchedGround = true;
+                jumpLimit = 0;
             }
 
 
