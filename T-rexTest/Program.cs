@@ -54,9 +54,9 @@ namespace T_rexTest
             speed();
             Drawmap();
             Font();
+            collide();
             jumps.update();
             jumps.DrawDyno();
-            jumps.collide();
            
             Raylib.DrawFPS(700, 0);//POSITION DRAW FPS
             Raylib.EndDrawing();
@@ -155,40 +155,38 @@ namespace T_rexTest
         static void collide()
         {
             Random random = new Random(2);
-            int obstaclespeed = 4;
-            int obtspeed2 = 3;
+            int obstaclespeed = 0;
+            float obstacle1LeftEdge;
+            float obstacle2LeftEdge;
+
+            Vector2 size = new Vector2(30);
+            Vector2 position;
+            position = new Vector2(20, 500);
+            float playerX;
+            float playerRightEdge;
+            bool doesTouch;
+
             for (int i = 0; i < obstacle1.Length; i++)
             {
+                obstacle1LeftEdge = obstacle1[i].X;
                 obstacle1[i].X -= obstaclespeed;
+                playerX = position.X;
+                playerRightEdge = playerX + 30;
+                doesTouch = playerRightEdge == obstacle1LeftEdge;
 
-                if (obstacle1[i].X <= -obstacle1[i].Width)
+
+                if (doesTouch == true)
                 {
-                    obstacle1[i] = new Rectangle(random.Next(860), 500, 30, 45);
+                    Raylib.DrawTextEx(FontDyno, "Game Over", new Vector2(100, 100), 40, 2, Color.DARKBLUE);
                 }
             }
 
             for (int i = 0; i < obstacles2.Length; i++)
             {
-                obstacles2[i].X -= obtspeed2;
-                if (obstacles2[i].X <= -obstacles2[i].Width)
-                {
-                    obstacles2[i] = new Rectangle(random.Next(860), 450, 35, 35);
-                }
+                obstacle2LeftEdge = obstacles2[i].X;
+                obstacles2[i].X -= obstaclespeed;
+
             }
-
-            Vector2 size = new Vector2(30);
-            Vector2 position;
-            position = new Vector2(20, 500);
- 
-            float playerX = position.X;
-            //float playerY = position.Y;
-
-            //float leftEdge1 = position.X;
-            float rightEdge1 = position.X + position.X;
-            //float topEdge1 = position.Y;
-            //float bottomEdge1 = position.Y + position.Y;
-
-            bool doesTouch = rightEdge1 == obstacle1.X;
         }
     }
 }
