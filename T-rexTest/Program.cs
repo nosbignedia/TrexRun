@@ -56,6 +56,7 @@ namespace T_rexTest
             Font();
             jumps.update();
             jumps.DrawDyno();
+            jumps.collide();
            
             Raylib.DrawFPS(700, 0);//POSITION DRAW FPS
             Raylib.EndDrawing();
@@ -121,7 +122,7 @@ namespace T_rexTest
                 obstacles2[i].X -= obtspeed2;
                 if (obstacles2[i].X <= -obstacles2[i].Width)
                 {
-                    obstacles2[i] = new Rectangle(random.Next(860), 475, 35, 70);
+                    obstacles2[i] = new Rectangle(random.Next(860), 450, 35, 35);
                 }
             }
             
@@ -150,6 +151,44 @@ namespace T_rexTest
                     baserandom[i] = new Rectangle(random.Next(850), 550, 15, 15);
                 }
             }
+        }
+        static void collide()
+        {
+            Random random = new Random(2);
+            int obstaclespeed = 4;
+            int obtspeed2 = 3;
+            for (int i = 0; i < obstacle1.Length; i++)
+            {
+                obstacle1[i].X -= obstaclespeed;
+
+                if (obstacle1[i].X <= -obstacle1[i].Width)
+                {
+                    obstacle1[i] = new Rectangle(random.Next(860), 500, 30, 45);
+                }
+            }
+
+            for (int i = 0; i < obstacles2.Length; i++)
+            {
+                obstacles2[i].X -= obtspeed2;
+                if (obstacles2[i].X <= -obstacles2[i].Width)
+                {
+                    obstacles2[i] = new Rectangle(random.Next(860), 450, 35, 35);
+                }
+            }
+
+            Vector2 size = new Vector2(30);
+            Vector2 position;
+            position = new Vector2(20, 500);
+ 
+            float playerX = position.X;
+            //float playerY = position.Y;
+
+            //float leftEdge1 = position.X;
+            float rightEdge1 = position.X + position.X;
+            //float topEdge1 = position.Y;
+            //float bottomEdge1 = position.Y + position.Y;
+
+            bool doesTouch = rightEdge1 == obstacle1.X;
         }
     }
 }
