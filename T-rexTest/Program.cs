@@ -11,6 +11,7 @@ namespace T_rexTest
         static Color obtaclecolor = Color.DARKGREEN;
         //obstacles 2
         static Rectangle[] obstacles2 = new Rectangle[1];
+        static Color obtacle2color = Color.DARKGRAY;
         //obstacle 3
         static Rectangle[] birds = new Rectangle[5];
         static Color birdscolor = Color.BLACK;
@@ -93,7 +94,7 @@ namespace T_rexTest
             //DrawObstacle2
             for (int i = 0; i < obstacles2.Length; i++)
             {
-                Raylib.DrawRectangleRec(obstacles2[i], obtaclecolor);
+                Raylib.DrawRectangleRec(obstacles2[i], obtacle2color);
             }
             //draw birds
             for (int i = 0; i < birds.Length; i++)
@@ -154,38 +155,51 @@ namespace T_rexTest
         }
         static void collide()
         {
-            Random random = new Random(2);
-            int obstaclespeed = 0;
+            int obstaclespeed = 4;
+            int obtspeed2 = 3;
             float obstacle1LeftEdge;
             float obstacle2LeftEdge;
 
-            Vector2 size = new Vector2(30);
             Vector2 position;
             position = new Vector2(20, 500);
             float playerX;
+            float playerY;
             float playerRightEdge;
-            bool doesTouch;
+            bool doesTouchRight1;
+            bool doesTouchRight2;
 
+            //getting the x coordinate for obstacle 1
             for (int i = 0; i < obstacle1.Length; i++)
             {
                 obstacle1LeftEdge = obstacle1[i].X;
-                obstacle1[i].X -= obstaclespeed;
+                obstacle1LeftEdge -= obstaclespeed;
                 playerX = position.X;
+                playerY = position.Y;
                 playerRightEdge = playerX + 30;
-                doesTouch = playerRightEdge == obstacle1LeftEdge;
+                //comparing the two coords
+                doesTouchRight1 = playerRightEdge >= obstacle1LeftEdge;
 
-
-                if (doesTouch == true)
+                if (doesTouchRight1 == true)
                 {
-                    Raylib.DrawTextEx(FontDyno, "Game Over", new Vector2(100, 100), 40, 2, Color.DARKBLUE);
+                    Raylib.DrawTextEx(FontDyno, "Woo!", new Vector2(100, 100), 40, 2, Color.DARKBLUE);
                 }
             }
 
+            //the x coordinate for obstacle 2
             for (int i = 0; i < obstacles2.Length; i++)
             {
                 obstacle2LeftEdge = obstacles2[i].X;
-                obstacles2[i].X -= obstaclespeed;
+                obstacle2LeftEdge -= obtspeed2;
+                playerX = position.X;
+                playerRightEdge = playerX + 30;
+                //comparing the two coords
+                doesTouchRight2 = playerRightEdge >= obstacle2LeftEdge;
 
+                if (doesTouchRight2 == true)
+                {
+                    Raylib.DrawTextEx(FontDyno, "Keep Going!", new Vector2(400, 100), 40, 2, Color.DARKBLUE);
+                }
+                //the collision doesnt fully work, even when you jump over an obstacle it still says you hit it, since it doesnt make sense for it to say you hit something when you didnt, i put encouraging messages - Logan
             }
         }
     }
